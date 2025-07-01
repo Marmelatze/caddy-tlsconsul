@@ -49,6 +49,9 @@ func (cs *ConsulStorage) EncryptStorageData(data *StorageData) ([]byte, error) {
 
 func (cs *ConsulStorage) decrypt(bytes []byte) ([]byte, error) {
 	// No key? No decrypt
+	if len(bytes) == 0 {
+		return bytes, nil
+	}
 	if len(cs.AESKey) == 0 {
 		return bytes, nil
 	}
